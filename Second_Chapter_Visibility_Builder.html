@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Second Chapter Visibility Builder</title>
+<style>
+:root{--ink:#141210;--cream:#f6f0e8;--ivory:#fffaf3;--gold:#b98a35;--gold2:#d9b86d;--teal:#2f8f8c;--muted:#6f675f;--line:#dccfbf}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;color:var(--ink);background:linear-gradient(180deg,#f8f2ea,#efe6db)}
+.wrapper{max-width:1100px;margin:auto;padding:28px 18px 48px}.hero{background:var(--ink);color:white;border-radius:24px;padding:34px;box-shadow:0 18px 50px rgba(0,0,0,.16)}
+.eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--gold2);font-weight:700}h1{font-family:Georgia,serif;font-size:clamp(38px,6vw,68px);line-height:.98;margin:12px 0}
+.hero p{max-width:760px;color:#eee5da;line-height:1.65;font-size:17px}.brandline{margin-top:20px;font-style:italic;color:var(--gold2);font-family:Georgia,serif}
+.card{background:rgba(255,250,243,.98);border:1px solid var(--line);border-radius:20px;padding:24px;margin-top:20px;box-shadow:0 10px 28px rgba(37,27,19,.08)}
+.card h2{font-family:Georgia,serif;font-size:28px;margin:0 0 6px}.sub{color:var(--muted);line-height:1.5}.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.full{grid-column:1/-1}
+label{display:block;font-weight:700;margin-bottom:7px}input,select,textarea{width:100%;border:1px solid #cdbfab;border-radius:12px;padding:12px 13px;background:white;font-size:15px}
+textarea{min-height:96px}.checks{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.check{display:flex;gap:9px;align-items:flex-start;border:1px solid var(--line);padding:12px;border-radius:12px;background:white}.check input{width:auto}
+.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}button{border:none;border-radius:999px;padding:13px 19px;font-weight:800;cursor:pointer;font-size:15px}.primary{background:var(--ink);color:white}.secondary{background:transparent;border:1px solid var(--ink)}.teal{background:var(--teal);color:white}
+#results{display:none}.badge{display:inline-block;padding:7px 10px;border-radius:999px;background:#e9f3f2;color:#226d6a;font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+.result-section{margin-top:22px;padding-top:18px;border-top:1px solid var(--line)}.result-section h3{font-family:Georgia,serif;font-size:23px;margin:0 0 10px}
+.ladder{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.step{padding:16px;border-radius:15px;background:#fff;border:1px solid var(--line);min-height:150px}.step strong{display:block;color:var(--gold);margin-bottom:7px}.step.active{border:2px solid var(--gold);background:#fffaf0}
+.two,.plan{display:grid;grid-template-columns:1fr 1fr;gap:14px}.callout{background:var(--ink);color:white;border-radius:16px;padding:18px}.callout b{color:var(--gold2)}
+.day{background:white;border:1px solid var(--line);border-radius:14px;padding:15px}.day small{color:var(--teal);font-weight:800;letter-spacing:.08em}.day h4{margin:6px 0}.day p{margin:0;color:#514a44;line-height:1.45}
+.footer{text-align:center;color:#5b5249;margin-top:22px;font-size:13px}
+@media(max-width:800px){.grid,.two,.plan{grid-template-columns:1fr}.checks{grid-template-columns:1fr}.ladder{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.hero{padding:26px 20px}.ladder{grid-template-columns:1fr}.card{padding:19px}}
+@media print{body{background:white}.no-print,.hero,.input-card{display:none!important}#results{display:block!important}.wrapper{max-width:none;padding:0}.card{box-shadow:none;border:0}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<section class="hero">
+<div class="eyebrow">The Second Chapter Mastermind • Week 6</div>
+<h1>Visibility Builder</h1>
+<p>Build a simple visibility system around one offer, one woman, and the channels that actually fit your life. No “be everywhere” strategy required.</p>
+<div class="brandline">Legacy Isn’t Later.™</div>
+</section>
+
+<section class="card input-card">
+<h2>Build My Visibility Plan</h2>
+<p class="sub">Answer these questions honestly. The goal is not to choose the trendiest platform. It is to build a visibility rhythm you can actually sustain.</p>
+<div class="grid">
+<div><label>My core offer</label><input id="offer" placeholder="Example: Retirement Income Planner"></div>
+<div><label>Who is it for?</label><input id="audience" placeholder="Example: Women over 50 preparing to retire"></div>
+<div class="full"><label>The problem it solves</label><textarea id="problem" placeholder="What is she struggling with right now?"></textarea></div>
+<div><label>Time I can realistically spend each week</label><select id="time"><option value="60">About 1 hour</option><option value="120" selected>About 2 hours</option><option value="180">About 3 hours</option><option value="300">4–5 hours</option></select></div>
+<div><label>Content style I prefer</label><select id="format"><option value="written">Written posts / captions</option><option value="video">Video</option><option value="visual">Graphics / visual content</option><option value="audio">Audio / voice-led</option><option value="mixed" selected>Mixed</option></select></div>
+<div><label>Visibility preference</label><select id="visibility"><option value="face">Face-forward is fine</option><option value="low">Low-face / mostly product-led</option><option value="faceless">Faceless preferred</option></select></div>
+<div><label>Where do you currently show up most?</label><select id="current"><option value="facebook">Facebook</option><option value="instagram">Instagram</option><option value="linkedin">LinkedIn</option><option value="tiktok">TikTok</option><option value="youtube">YouTube</option><option value="email">Email</option><option value="none">Nowhere consistently</option></select></div>
+<div class="full"><label>Where does your audience already spend time? Choose all that apply.</label>
+<div class="checks">
+<label class="check"><input type="checkbox" value="facebook" class="audience-platform"> Facebook / Facebook Groups</label>
+<label class="check"><input type="checkbox" value="instagram" class="audience-platform"> Instagram</label>
+<label class="check"><input type="checkbox" value="linkedin" class="audience-platform"> LinkedIn</label>
+<label class="check"><input type="checkbox" value="tiktok" class="audience-platform"> TikTok</label>
+<label class="check"><input type="checkbox" value="youtube" class="audience-platform"> YouTube</label>
+<label class="check"><input type="checkbox" value="pinterest" class="audience-platform"> Pinterest</label>
+<label class="check"><input type="checkbox" value="email" class="audience-platform"> Email</label>
+<label class="check"><input type="checkbox" value="communities" class="audience-platform"> Communities / networking spaces</label>
+</div></div></div>
+<div class="actions no-print"><button class="primary" onclick="buildPlan()">Build My Plan</button><button class="secondary" onclick="resetForm()">Reset</button></div>
+</section>
+
+<section id="results" class="card">
+<span class="badge">Your Week 6 Visibility Plan</span>
+<h2 id="planTitle">Your Visibility System</h2>
+<p class="sub" id="summary"></p>
+<div class="actions no-print"><button class="teal" onclick="window.print()">Print / Save PDF</button><button class="secondary" onclick="copyPlan()">Copy Summary</button></div>
+
+<div class="result-section"><h3>Your Visibility Ladder</h3><div class="ladder">
+<div class="step" id="l1"><strong>Level 1</strong><b>Existing Circle</b><p>People who already know you: friends, former clients, coworkers, email contacts, community members.</p></div>
+<div class="step" id="l2"><strong>Level 2</strong><b>Borrowed Audiences</b><p>Facebook groups, collaborations, podcasts, networking groups, strategic partnerships and communities.</p></div>
+<div class="step" id="l3"><strong>Level 3</strong><b>Social Discovery</b><p>Platforms that can introduce you to new people through consistent social content.</p></div>
+<div class="step" id="l4"><strong>Level 4</strong><b>Search + Evergreen</b><p>Pinterest, YouTube and searchable content that can continue working after you publish it.</p></div>
+</div></div>
+
+<div class="result-section"><h3>Your One + One Strategy</h3><div class="two">
+<div class="callout"><b>Relationship Channel</b><br><span id="relationship"></span></div>
+<div class="callout"><b>Discovery Channel</b><br><span id="discovery"></span></div>
+</div><p id="why" style="line-height:1.6;color:#514a44"></p></div>
+
+<div class="result-section"><h3>Your Content Jobs</h3><div class="two">
+<div class="day"><small>ATTRACT</small><h4>Help her recognize herself.</h4><p id="attract"></p></div>
+<div class="day"><small>TEACH</small><h4>Give her a useful next step.</h4><p id="teach"></p></div>
+<div class="day"><small>PROVE</small><h4>Show why she can trust you.</h4><p id="prove"></p></div>
+<div class="day"><small>INVITE</small><h4>Tell her what to do next.</h4><p id="invite"></p></div>
+</div></div>
+
+<div class="result-section"><h3>Your 30-Day Visibility Map</h3><p class="sub">A simple four-week rhythm. Repeat what works instead of inventing thirty unrelated posts.</p><div class="plan" id="monthPlan"></div></div>
+
+<div class="result-section"><h3>Your Weekly Outreach Actions</h3><div class="callout" id="outreach"></div></div>
+
+<div class="result-section"><h3>Your Week 6 Commitment</h3><p style="font-family:Georgia,serif;font-size:23px;line-height:1.45">“For the next seven days, I will stop trying to be everywhere and intentionally show up where my buyer is most likely to find me.”</p><p><b>Your measurable goal:</b> Create 3 strategic pieces of content + complete 2 direct outreach actions.</p></div>
+</section>
+
+<div class="footer">The Second Chapter Mastermind • Visibility Builder • Legacy Isn’t Later.™</div>
+</div>
+
+<script>
+const pretty={facebook:"Facebook",instagram:"Instagram",linkedin:"LinkedIn",tiktok:"TikTok",youtube:"YouTube",pinterest:"Pinterest",email:"Email",communities:"Communities / Networking",none:"your existing network"};
+function selectedPlatforms(){return [...document.querySelectorAll('.audience-platform:checked')].map(x=>x.value)}
+function chooseRelationship(current,platforms){const order=["email","facebook","communities","linkedin","instagram","tiktok"];if(["email","facebook","linkedin","instagram"].includes(current))return current;return order.find(x=>platforms.includes(x))||"facebook"}
+function chooseDiscovery(format,visibility,platforms,current){let s={pinterest:0,youtube:0,tiktok:0,instagram:0,linkedin:0};platforms.forEach(p=>{if(s[p]!==undefined)s[p]+=3});if(format==="written"){s.pinterest+=3;s.linkedin+=2}if(format==="visual"){s.pinterest+=4;s.instagram+=2}if(format==="video"){s.youtube+=4;s.tiktok+=3}if(format==="audio"){s.youtube+=2;s.instagram+=1}if(format==="mixed"){s.pinterest+=2;s.youtube+=2;s.instagram+=1}if(visibility==="faceless"){s.pinterest+=4;s.youtube+=1;s.tiktok+=1}if(visibility==="low"){s.pinterest+=3;s.youtube+=2}if(visibility==="face"){s.youtube+=2;s.tiktok+=2;s.instagram+=1}if(s[current]!==undefined)s[current]+=1;return Object.entries(s).sort((a,b)=>b[1]-a[1])[0][0]}
+function buildPlan(){
+const offer=document.getElementById('offer').value.trim()||"your core offer";
+const audience=document.getElementById('audience').value.trim()||"your ideal buyer";
+const problem=document.getElementById('problem').value.trim()||"the problem she is trying to solve";
+const time=parseInt(document.getElementById('time').value),format=document.getElementById('format').value,visibility=document.getElementById('visibility').value,current=document.getElementById('current').value,platforms=selectedPlatforms();
+const relationship=chooseRelationship(current,platforms);let discovery=chooseDiscovery(format,visibility,platforms,current);if(discovery===relationship)discovery="pinterest";
+document.getElementById('planTitle').textContent=`${offer}: Your Visibility System`;
+document.getElementById('summary').textContent=`Your plan is built around reaching ${audience} without trying to be everywhere. Your message should consistently connect ${problem} to the outcome your offer provides.`;
+document.querySelectorAll('.step').forEach(x=>x.classList.remove('active'));
+if(["email","facebook"].includes(relationship))document.getElementById('l1').classList.add('active');
+if(relationship==="communities")document.getElementById('l2').classList.add('active');
+if(["instagram","linkedin","tiktok"].includes(relationship))document.getElementById('l3').classList.add('active');
+if(["pinterest","youtube"].includes(discovery))document.getElementById('l4').classList.add('active');else document.getElementById('l3').classList.add('active');
+document.getElementById('relationship').textContent=pretty[relationship];document.getElementById('discovery').textContent=pretty[discovery];
+document.getElementById('why').textContent=`${pretty[relationship]} gives you a place to deepen trust and have conversations. ${pretty[discovery]} gives new people a way to discover you. Together, they create a simpler system than trying to maintain five platforms at once.`;
+document.getElementById('attract').textContent=`Speak directly to the moment ${audience} realizes she is dealing with ${problem}.`;
+document.getElementById('teach').textContent=`Share one practical tip, mistake to avoid, checklist item, or small shift that helps her make progress before she buys.`;
+document.getElementById('prove').textContent=`Use your experience, examples, feedback, a demonstration, or a behind-the-scenes look at ${offer}.`;
+document.getElementById('invite').textContent=`Make a clear invitation to take the next step with ${offer}. Do not make her guess what you sell or how to get it.`;
+const frequency=time<=60?2:time<=120?3:4;const themes=[["ATTRACT","Problem Recognition",`Name one specific frustration related to ${problem}.`],["TEACH","One Useful Shift",`Teach one thing that helps ${audience} move forward.`],["PROVE","Show the Solution",`Show ${offer}, your process, an example, or your experience.`],["INVITE","Make the Offer",`Tell ${audience} exactly how ${offer} helps and invite her to take the next step.`]];
+let html="";for(let w=1;w<=4;w++){for(let i=0;i<frequency;i++){const t=themes[(w+i)%4];html+=`<div class="day"><small>WEEK ${w} • ${t[0]}</small><h4>${t[1]}</h4><p>${t[2]}</p></div>`}}document.getElementById('monthPlan').innerHTML=html;
+const items=[`Have 3 meaningful conversations where ${audience} already gathers.`,`Invite 1 warm contact to look at ${offer} if it genuinely fits.`,`Repurpose 1 existing piece of content onto ${pretty[discovery]}.`,`Share 1 clear offer post on ${pretty[relationship]}.`,`Identify 1 collaboration, community, or borrowed-audience opportunity.`];
+document.getElementById('outreach').innerHTML=`<b>This week, complete any two:</b><br><br>• ${items.join("<br>• ")}`;
+document.getElementById('results').style.display='block';document.getElementById('results').scrollIntoView({behavior:'smooth'});
+}
+function resetForm(){document.querySelectorAll('input[type="text"], textarea').forEach(x=>x.value="");document.querySelectorAll('input[type="checkbox"]').forEach(x=>x.checked=false);document.getElementById('results').style.display='none'}
+async function copyPlan(){const text=`SECOND CHAPTER VISIBILITY PLAN
+
+${document.getElementById('summary').textContent}
+
+Relationship Channel: ${document.getElementById('relationship').textContent}
+Discovery Channel: ${document.getElementById('discovery').textContent}
+
+Weekly Goal: 3 strategic pieces of content + 2 direct outreach actions.
+
+Legacy Isn’t Later.`;try{await navigator.clipboard.writeText(text);alert("Your plan summary was copied.")}catch(e){alert("Use Print / Save PDF instead.")}}
+</script>
+</body></html>
